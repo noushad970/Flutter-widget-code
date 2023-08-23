@@ -1,0 +1,2409 @@
+void main() function হল প্রধান ফাংশন যার ভিতরে সব কোড রান করবে।
+
+Use of Text Widget
+__________________
+এটার মাধ্যমে কো অ্যাপ এর টেস্ক লেখা হয়
+Example
+void main() {
+  runApp(Text(
+    'Hello World', //text
+    textDirection: TextDirection.ltr, //for remove errors
+    textAlign: TextAlign.center, //text align
+    overflow: TextOverflow.ellipsis,
+    textScaleFactor: 1, //text size
+    semanticsLabel: 'Text detail',
+    maxLines: 100, //maximum limit of lines
+    style: TextStyle(
+      color: Colors.green,
+    ), // text colors
+  ));
+}
+
+Use of text style
+_________________
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text('Sample app'),
+      ),
+      body: Text(
+        'Hello World',
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr,
+        style: TextStyle(
+          fontSize: 80,
+          // fontWeight: FontWeight.bold,
+          // letterSpacing: 2,
+          // wordSpacing: 3,
+          // color: Colors.pink,
+          foreground: Paint()
+            ..color = Colors.black //stroke foreground color
+            ..strokeWidth = 3.0 //stroke size
+            ..style = PaintingStyle.fill, //foregound text is fill or stroke
+          // background: Paint()
+          //   ..color =
+          //       const Color.fromARGB(255, 0, 255, 8) //text background color
+          //   ..strokeWidth = 0 //stroke size
+          //   ..style = PaintingStyle.fill, //background is fill or stroke
+          backgroundColor: Colors.brown,// background color
+          fontStyle: FontStyle.italic,//fontstyle normal or italic
+          //decoration: TextDecoration.underline,//for using underline or over line
+          decoration: TextDecoration.combine(
+              [TextDecoration.overline, TextDecoration.underline]),//if we use both underline and overline in text
+          decorationColor: Colors.red, //color of underline or upperline
+          decorationStyle: TextDecorationStyle.dashed,//style of underline or upper line
+          shadows: [
+            Shadow(color: Colors.blue,blurRadius: 1,offset:Offset(4,1))//shadow beside the text
+          ]
+        ),
+      ),
+    ),
+  ));
+}
+
+
+use of style for once and use it for multiple text
+__________________________________________________
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample app'),
+          ),
+          body: Column(
+            children: [
+              DefaultTextStyle(
+                  style: TextStyle(
+                    color: Colors.red,//color for all chrildren text
+                    fontSize: 20,//size for all children text
+                    fontStyle: FontStyle.italic,//style for all children
+                  ),
+                  child: Column(
+                    children: [//children text
+                      Text(
+                        'My Name',//if we want to change one children style from the other children we can do it by below line 
+                        style: TextStyle(fontSize: 10, color: Colors.cyan),//changing children text information
+                      ),
+                      Text('is Noushad')
+                    ],
+                  ))
+            ],
+          ))));
+}
+
+
+Use of TextSpan/text.rich
+__________________________
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample app'),
+          ),
+          body: Center(
+            child: Text.rich(
+              TextSpan(text: 'Hello',
+              style: TextStyle(fontSize: 20,color: Colors.red),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'World',
+                  style: TextStyle(fontSize: 40,color: Colors.green)
+                ),
+                TextSpan(
+                  text: '!',
+                  style: TextStyle(fontSize: 50,color: Colors.black)
+                )
+              ]
+              )
+            ),
+          )
+          )));
+}
+
+
+Use of Rich Text
+___________________
+
+this method is use to edit a string line's multiple word in different style
+
+code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample app'),
+          ),
+          body: Center(
+            child: RichText(
+              text: TextSpan(
+                text: 'First',
+                style: TextStyle(fontSize: 20,color: Colors.green),
+                children: <TextSpan>[
+                  TextSpan(text: 'Second',
+                  style: TextStyle(fontSize: 20,color: Colors.purple  )),
+                 TextSpan(text: 'Third',
+                  style: TextStyle(fontSize: 20,color: Colors.purple  )),
+                   TextSpan(text: 'Default')
+                  //style: TextStyle(fontSize: 20,color: Colors.purple  ))
+                
+                
+                ]
+                
+              ),
+            )
+          ))));
+}
+
+
+use of text.rich
+____________________
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample app'),
+          ),
+          body: Center(
+            child: Text.rich(
+              TextSpan(text: 'Favourite',
+              style: TextStyle(fontSize: 20,color: Colors.blue),
+              children: <InlineSpan>[
+                TextSpan(text: ' Game',
+                style: TextStyle(fontSize: 20,color: Colors.yellow)),
+                TextSpan(text: ' is Football',
+                style: TextStyle(fontSize: 25,color: Colors.cyan))
+                
+              ]
+              )
+              
+            )
+          ))));
+}
+
+
+use of container
+________________
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample app'),
+          ),
+          body: Center(
+            child: Container(
+              child: Text(
+                'My App',
+                style: TextStyle(fontSize: 30),
+              ),
+              color: Colors.orange,
+              height: 200,
+              width: 200,
+              alignment: Alignment.center,
+              //padding: EdgeInsets.all(25),
+              //padding: EdgeInsets.fromLTRB(20, 40, 60, 80),
+              //padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+              margin: EdgeInsets.all(10),
+              constraints: BoxConstraints(
+                  maxHeight: 400, maxWidth: 400, minHeight: 20, minWidth: 20),
+              //transform: Matrix4.rotationZ(25.00),
+              transform: Matrix4.skewX(.5),
+	       decoration: BoxDecoration(
+                //  color: Colors.orange,
+                  //allside border:
+                  // border: Border.all(
+                  //   color: Colors.black,
+                  //   width: 2,
+                  //   style: BorderStyle.solid,
+                  // ))
+                  //indivitual border
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                          style: BorderStyle.solid),
+                      left: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                          style: BorderStyle.solid),
+                      right: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                          style: BorderStyle.solid),
+                      top: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                          style: BorderStyle.solid)),
+                  //radius for all side
+                  //borderRadius: BorderRadius.all(Radius.circular(30)),
+                  // borderRadius: BorderRadius.circular(30)
+                  // radius for indivitual side
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     //blurRadius: 15.00,
+                  //     color: Colors.grey,
+                  // offset: Offset(10,15)
+                  //   )
+                  // ],
+                 gradient: LinearGradient(colors:)
+                 //  shape: BoxShape.circle,   
+                  ),
+            ),
+              
+            ),
+          ))));
+}
+
+use of columb and container
+___________________________
+
+use: colom widget divided two or more container in a colom
+
+code: 
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Column(
+            children: [
+              Container(
+                child: Text(
+                  'First',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.green,
+                padding: EdgeInsets.all(30),
+              ),
+              Container(
+                child: Text(
+                  'Second',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.blue,
+                padding: EdgeInsets.all(30),
+              ),
+              Container(
+                child: Text(
+                  'Third',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.red,
+                padding: EdgeInsets.all(30),
+              )
+            ],
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // verticalDirection: VerticalDirection.down,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ))));
+}
+
+
+
+use of raw and container
+_________________________
+
+use: raw widget divided two or more container in a raw
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'First',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.blue,
+              ),
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'Second',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.green,
+              ),
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'Third',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.yellow,
+              )
+            ],
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            textDirection: TextDirection.rtl,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ))));
+}
+
+use of expanded or flexible
+___________________________
+
+use: expanded make any container suitable to the screen size. or we can say expanded divided two or more container with same space in a tab or window or screen or a app.
+on the other hand flexible is same as expanded.but the difference is we can input the value of how much a container will expand in a screen by flexible.
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Column(
+            children: [
+              Flexible(
+                flex: 5,
+                child:
+              Container(
+                child: Text(
+                  'First',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.green,
+                padding: EdgeInsets.all(30),
+                alignment: Alignment.center,
+              ),),
+              Flexible(
+                flex: 4,
+                child: 
+              Container(
+                child: Text(
+                  'Second',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.blue,
+                padding: EdgeInsets.all(30),
+                alignment: Alignment.center,
+              ),),
+              Flexible(
+                flex: 3,
+                child: 
+              Container(
+                child: Text(
+                  'Third',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.red,
+                padding: EdgeInsets.all(30),
+                alignment: Alignment.center,
+              ))
+            ],
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            // verticalDirection: VerticalDirection.down,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ))));
+}
+
+
+use of flex widget
+___________________
+
+use:
+
+flex widget is a combination of raw and column widget. thats maean by flex widget we can combinely organize raw and column in one widget.
+
+code:
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Flex(
+            direction: Axis.horizontal,
+            children: [
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'First',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.blue,
+                width: 220,
+                height: 100,
+              ),
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'Second',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.green,
+                width: 220,
+                height: 100,
+              ),
+              Container(
+                padding: EdgeInsets.all(30),
+                child: Text(
+                  'Third',
+                  style: TextStyle(fontSize: 30, color: Colors.red),
+                ),
+                color: Colors.yellow,
+                width: 220,
+                height: 100,
+              )
+            ],
+
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            // textDirection: TextDirection.rtl,
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ))));
+}
+
+
+use of height factor and width factor
+
+use: height factor and width factor is use for give margin in a page or tab
+
+code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Center(
+            heightFactor: 2,
+            widthFactor: 2,
+            child: Container(
+              height: 100,
+              width: 80,
+              color: Colors.blue,
+            ),
+          )
+
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            // textDirection: TextDirection.rtl,
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          )));
+}
+
+use of spacer widget
+____________________
+
+use:
+
+spacer is use to make space's between two container with value.
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Row(
+            children: [
+              Container(
+                child: Text(
+                  'First',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.green,
+                padding: EdgeInsets.all(30),
+              ),
+              Spacer(),
+              Container(
+                child: Text(
+                  'Second',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.blue,
+                padding: EdgeInsets.all(30),
+              ),
+              Spacer(flex: 3,),
+              Container(
+                child: Text(
+                  'Third',
+                  style: TextStyle(fontSize: 20, color: Colors.black),
+                ),
+                color: Colors.red,
+                padding: EdgeInsets.all(30),
+              )
+            ],
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            // verticalDirection: VerticalDirection.down,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ))));
+}
+
+
+use of card widget:
+___________________
+
+use:card widget is use for make a container in style of card with simple shadow and rounded corner.Shape is use for make a shape in a card containe.
+evelation is use to make card shadow big or increased.margin property is use for make a margin in a page. shadow color is use to make a evelation or shadow colorfull
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Container(
+            height: 200,
+            width: 200,
+            //color: Color.fromARGB(255, 142, 142, 142),
+            child: Card(
+              color: Colors.orange,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0)),
+              elevation: 50.0,
+              margin: EdgeInsets.all(10.0),
+              shadowColor: Colors.red,
+            ),
+          ))));
+}
+
+
+use of sizedbox widget
+_______________________
+
+use: it is use for set size of a card
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: SizedBox.fromSize(
+            size: Size(150, 150),
+            child: Card(
+              color: Colors.blue,
+              child: Align(
+              child: Text('MY BOTTOM'),
+            ),),
+            // height: double.infinity,
+            // width: double.infinity,
+          ))));
+}
+
+
+use of single child scroll view widget
+_______________________________________
+
+use: it is normally use when two or more containers took more space in a screen and we want to show the full containers in the screen by scrolling that screen.
+reverse property is use when we want to show the bottom side on the screen first.it will happen when reverse is false.
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: SingleChildScrollView(
+              padding: EdgeInsets.all(20),
+              //reverse: true,
+              child: Column(
+                children: [
+                  Container(
+                    child: Text('Noushad'),
+                    color: Colors.lime,
+                    height: 500,
+                    width: 500,
+                  ),
+                  Container(
+                    child: Text('Bhuiyan'),
+                    color: Colors.pinkAccent,
+                    height: 500,
+                    width: 500,
+                  )
+                ],
+              )))));
+}
+
+
+use of placeholder widget
+
+use: place holder widget is usually use to take a finite ammount of space's which we could replace with picture logo or anything else.
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Sample App'),
+          ),
+          body: Column(
+            children: [
+              Placeholder(
+                strokeWidth: 20,
+                color: Colors.blue,
+                fallbackHeight: 200,
+              fallbackWidth: 200,
+              ),
+              Spacer(),
+              Placeholder(
+                fallbackHeight: 100,
+                fallbackWidth: 100,
+                color: Colors.red,
+                strokeWidth: 30,
+              )
+            ],
+          ) 
+          )));
+}
+
+
+
+use of appbar widget:
+
+use: appbar is use for giving a bar in a app.the bar contain menu search option, three dots etc.debugShowCheckedModeBanner property is use to remove the extra text in appbar
+leading property is use to make a icon of profile in appbar.and drawer property is use to make a three line option which will open several tab that we set. actions property is use to
+appear three dots in the top right corner of the appbar.actionsIconTheme property is use to change the three dots icons properties like color,opacity,size etc.
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            // title: Container(
+            //   width: 100,
+            //   height: 130,
+            //   child: Image.network(
+            //       'https://static-blog.treebo.com/wp-content/uploads/2018/06/manali.jpg'),
+            // ),
+            //centerTitle: true,
+            //   leading: Icon(Icons.account_box),
+            //   leadingWidth: 300,//use to take replace the icon
+            // ),
+            // actions: [Icon(Icons.more_vert)],
+            // backgroundColor: Colors.lightGreen,
+            // actionsIconTheme: IconThemeData(color: Colors.red),
+            title: Text('APP'),
+            titleTextStyle: TextStyle(color: Colors.pink),
+            elevation: 20,
+            shadowColor: Colors.grey,
+            // toolbarHeight: 120,
+            // toolbarOpacity: .5,
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: Container(
+              child: Text('Hello'),
+              color: Colors.blue,
+              padding: EdgeInsets.all(25),
+            ),
+          ))));
+}
+
+
+use of textbottom widget
+_________________________
+
+use: textbottom is use to add a text bottom on a application. onpressed property is use to add what i need to do when i press the bottom widget.and
+onlongpressed property is use to add what i need to do when i long press on that bottom.when i write onpressed: null than that bottom will stop working.
+icon property is for add icon in a bottom and lebel property is use to add text on that icon. TextButton.styleFrom property is use to customize the text size,color,
+background color etc.side : borderside property is use to make a border on a bottom.shape property is use to give a shape to the bottom
+
+code:
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+              child: TextButton.icon(
+            icon: Icon(Icons.arrow_back),
+            label: Text('Back'),
+            onPressed: () {},
+            style: TextButton.styleFrom(
+                primary: Colors.blue,
+                //backgroundColor: Colors.red,
+                textStyle: TextStyle(fontSize: 30),
+                side: BorderSide(color: Colors.blue,width: 2),
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+                )
+                ),
+                
+            // child: Text('Botton'),
+            // onPressed: () {
+            //   print('Pressed');
+            // },
+          )
+          
+          ))));
+}
+
+
+use of image widgets
+______________________
+
+
+use: image widget is use to add image on a application. but we have to do a few things to add a image.first we have to add a image folder in the app files than on that 
+image folder we need to add some image. than on the code we have to goto the file name pubspec.yaml where we will found asset line which will be commented and we have to
+uncommented it. than press enter and tab than press on - symbol after that we have to type image/ and than save it.
+
+code:
+
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+              child: Center(
+            child: Image.asset(
+              'image/abc.jpg',
+              //height: 200,
+              //fit: BoxFit.fill,
+              color: Colors.green,
+              colorBlendMode: BlendMode.colorBurn,
+
+            ),
+          )))));
+}
+
+
+use of elevated bottom widget
+_____________________________
+
+
+use: by using elevated bottom we can make a bottom in app.constraingth box is a child property by which we can add size of a bottom.
+
+code:
+
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+              child: ConstrainedBox(
+            constraints: BoxConstraints.tightFor(height: 100, width: 100),
+            child: ElevatedButton(
+              child: Text('Button'),
+              onPressed: () {},
+              onLongPress: () {},
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey,
+                //backgroundColor: Colors.deepOrangeAccent,
+                textStyle: TextStyle(fontSize: 20,fontStyle: FontStyle.italic),
+                side: BorderSide(color: Colors.black,width: 2),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(200))
+                )
+              ),
+            ),
+            //      child: ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.bubble_chart), label: Text('Botton')),
+          )))));
+}
+
+
+use of icons widget
+____________________
+
+use: for using icon in app first we have to do a few things first we have to go to the pubspec file than we have to checked that use-material-design: true is checked
+ than we can use icon.
+
+code:
+
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+              child:Icon(
+                Icons.baby_changing_station,
+                size: 200,
+                color: Colors.blue,
+                semanticLabel: 'Baby',
+              )
+               
+               ))));
+}
+
+
+use of icon bottom widget
+_________________________
+
+use: by icon bottom we can add a icon and this will work as a botton.toottips property is use when we want to show some text in icon when we take the cursor on that icon
+
+code:
+
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.bubble_chart),
+              iconSize: 50,
+              tooltip: 'Bubble',
+              color: Colors.blue,
+              disabledColor: Colors.green,//is use to add botton color when botton color is null
+              splashColor: Colors.brown,//==is use when we click the botton and get click animation
+              highlightColor: Colors.lightBlueAccent,//animated with splashcolor color
+              hoverColor: Colors.grey,//is use when we put the cursor on the botton icon
+              splashRadius: 50,//is use to increase or decrease splash area
+              
+            ),
+          ))));
+}
+
+
+use of floating action botton widget
+______________________________________
+
+use: floating action botton is a round botton with text or icon
+
+code:
+
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
+
+int hexColor(String c) {
+  String sColor = '0xff' + c;
+  sColor = sColor.replaceAll('#', '');
+  int dColor = int.parse(sColor);
+  return dColor;
+}
+
+void main() {
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('MyApp'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: Text('Floating action Botton'),
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,//for giving the location of the botton
+            floatingActionButton: FloatingActionButton(onPressed: (){},
+            child: Icon(Icons.add),
+            ),
+            
+          )));
+}
+
+
+use of stateless and statefull widget
+_____________________________________
+
+code:
+
+stateless widget:
+_________________
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Center(child: Text('Hello')),
+    );
+    
+  }
+}
+
+stateful Widget:
+________________
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+@override
+State<StatefulWidget>createState(){
+  return DemoAppState();
+}
+}
+class DemoAppState extends State<DemoApp>{
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Center(child: Text('Hello')),
+    );
+    
+  }
+}
+
+
+USe of material app widget:
+__________________________
+
+code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+        title: Text('AppBar Title'),
+      ),
+      drawer: Drawer(),
+      ),
+      //for adding theme those code should be written
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.dark,//make the theme dark or light
+      debugShowCheckedModeBanner: false,
+    );
+    
+  }
+}
+
+
+use of bottomNegivationVar widget:
+____________________________________
+
+use: by using bottomNegivationVar widget we can add a botton tab with several botton in the bottom of the application
+
+code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+        title: Text('AppBar Title'),
+      ),
+      bottomNavigationBar: BottomNavigationBar(items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.add_chart),label: 'Add_Chart'),
+        
+      ]),
+      drawer: Drawer(),
+      ),
+      //for adding theme those code should be written
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.dark,//make the theme dark or light
+      debugShowCheckedModeBanner: false,
+    );
+    
+  }
+}
+
+
+use of listview widget:
+______________________
+
+use: by using listview widget we can make a list of container or anything else which we can scroll if the page limit exeded.
+
+code:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AppBar Title'),
+        ),
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_chart), label: 'Add_Chart'),
+        ]),
+        drawer: Drawer(),
+        body: ListView(
+          padding: EdgeInsets.all(20),
+          children: [
+            Container(
+              child: Text(
+                'File 1',
+                style: TextStyle(color: Colors.blue),
+                textAlign: TextAlign.center,
+              ),
+              color: Colors.red,
+              height: 100,
+            ),
+            Container(
+              child: Text(
+                'File 2',
+                style: TextStyle(color: Colors.black),
+              ),
+              color: Colors.green,
+              height: 100,
+            ),
+            Container(
+              child: Text(
+                'File 3',
+                style: TextStyle(color: Colors.brown),
+              ),
+              color: Colors.lightGreen,
+              height: 100,
+            ),
+            Container(
+              child: Text(
+                'File 4',
+                style: TextStyle(color: Colors.purple),
+              ),
+              color: Colors.pink,
+              height: 100,
+            ),
+            
+          ],
+        ),
+      ),
+      //for adding theme those code should be written
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.dark, //make the theme dark or light
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+
+Use of ListView Builder Widget:
+_______________________________
+
+use: listview builder is use to make infinite list which will be generate automatically or user dont need to add all list in the app.
+
+Code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  //final person = List<String>.generate(50, (i) => 'Person ${i+1}');//variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AppBar Title'),
+        ),
+        drawer: Drawer(),
+        body: ListView.builder(
+           // itemCount: person.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                leading: Icon(Icons.people),
+                trailing: Icon(Icons.call),
+                title: Text('Person ${index+1}'),
+              );
+            }),
+      ),
+    );
+  }
+}
+
+use of listview seperator widget:
+_________________________________
+
+
+use:lsitview seperated is use to separate two list property .
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  final person = List<String>.generate(
+      50, (i) => 'Person ${i + 1}'); //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('AppBar Title'),
+        ),
+        drawer: Drawer(),
+        body: ListView.separated(
+            itemCount: person.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                child: Padding(
+                  child: Text(person[index]),
+                  padding: EdgeInsets.all(40),
+                ),
+              );
+              
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Card(
+                //color: Colors.redAccent,
+                // child: Padding(
+                //   child: Text('$index'),
+                //   padding: EdgeInsets.all(1),
+                // ),
+              );
+              
+            },
+            ),
+      ),
+    );
+  }
+}
+
+
+use of listview.custom widget
+______________________________
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  final person = List<String>.generate(
+      50, (i) => 'Person ${i + 1}'); //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: ListView.custom(
+            //item: person.length,
+            childrenDelegate:
+                
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return Card(
+                
+                color: Colors.blue,
+                child: Padding(
+                  child: Text(person[index]),
+                  padding: EdgeInsets.all(20),
+                  
+                ),
+                
+              );
+            },
+            childCount: person.length),
+          ),
+        ));
+  }
+}
+
+
+use of stack widget:
+____________________
+
+use: by using stack widget we can make a layer of elements or by stack we can put one container to bottom of another or upper of another elements.
+positioned widget is a widget which position we can set randomly by user. but non positioned widget is a widget by which we cannot add position that mean 
+it will randomly take position at the top left corner of the screen
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  final person = List<String>.generate(
+      50, (i) => 'Person ${i + 1}'); //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('AppBar Title'),
+            ),
+            drawer: Drawer(),
+            body: Center(
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: 250,
+                    width: 250,
+                    color: Color.fromARGB(255, 0, 13, 255),
+                  ),
+                  Container(
+                    height: 200,
+                    width: 200,
+                    color: const Color.fromARGB(255, 255, 0, 0),
+                  ),
+                  Positioned(
+                      width: 10,
+                      height: 10,
+                      child: Container(
+                        height: 150,
+                        width: 150,
+                        color: Color.fromARGB(255, 0, 255, 21),
+                      ))
+                ],
+              ),
+            )));
+  }
+}
+
+
+use of indexed stack in widget
+______________________________
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: IndexedStack(index: index, children: [
+              Container(
+                width: 200,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                color: Colors.pink,
+                child: Text(
+                  '0',
+                  style: TextStyle(fontSize: 60, color: Colors.black,),
+                  
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                color: Colors.blue,
+                child: Text(
+                  '1',
+                  style: TextStyle(fontSize: 60, color: Colors.black),
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                color: Colors.red,
+                child: Text(
+                  '2',
+                  style: TextStyle(fontSize: 60, color: Colors.black),
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                color: Colors.green,
+                child: Text(
+                  '3',
+                  style: TextStyle(fontSize: 60, color: Colors.black),
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                padding: EdgeInsets.all(20),
+                color: Colors.yellow,
+                child: Text(
+                  '4',
+                  style: TextStyle(fontSize: 60, color: Colors.black),
+                ),
+              )
+            ]),
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.r_mobiledata),
+            onPressed: () {
+              setState(() {
+                if (index == 4)
+                  index = 0;
+                else
+                  index = index + 1;
+              });
+            },
+          ),
+        ));
+  }
+}
+
+
+use of clipract widget:
+_______________________
+
+use: this widget is use to make any image in a random size on app interface.or it is a croping system in flutter for a image
+
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('AppBar Title'),
+            ),
+            drawer: Drawer(),
+            body: Center(
+              child: ClipRect(
+                  child: Align(
+                alignment: Alignment.center,
+                heightFactor: .6,
+                widthFactor: .7,
+                child: Image.network(
+                    "https://c4.wallpaperflare.com/wallpaper/524/531/625/adventure-art-artistic-artwork-wallpaper-preview.jpg"),
+              )),
+            )));
+  }
+}
+
+
+use of clipRRact widget:
+_______________________
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('AppBar Title'),
+            ),
+            drawer: Drawer(),
+            body: Center(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  child: Align(
+                    alignment: Alignment.center,
+                    heightFactor: .6,
+                    widthFactor: .7,
+                    child: Image.network(
+                        "https://c4.wallpaperflare.com/wallpaper/524/531/625/adventure-art-artistic-artwork-wallpaper-preview.jpg"),
+                  )),
+            )));
+  }
+}
+
+use of drawer widget:
+____________________
+
+use: this widget is use to add a drawer in a app.in a drawer we can also some multiple thing like home,login,logout etc
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                  ),
+                  child: Column(children: [
+                    ClipRRect(
+                      child: Image.network(
+                        " ",
+                        height: 100,
+                        width: 100,
+                      ),
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                    Text("Noushad")
+                  ]),
+                ),
+                Column(
+                  children: [
+                    ListTile(
+                      title: Text('Home'),
+                      leading: Icon(Icons.home),
+                    ),
+                    ListTile(
+                      title: Text('Account'),
+                      leading: Icon(Icons.account_box),
+                    ),
+                    ListTile(
+                      title: Text('Cart'),
+                      leading: Icon(Icons.shopping_cart),
+                    ),
+                    ListTile(
+                      title: Text('Logout'),
+                      leading: Icon(Icons.logout),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+
+use of botton bar widget:
+___________________________
+
+use:botton bar is set of botton where we can add several botton
+
+code:
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer()
+body: ButtonBar(
+            overflowDirection: VerticalDirection.down, //if this
+            //alignment: MainAxisAlignment.start,
+            buttonPadding: EdgeInsets.all(100),
+            overflowButtonSpacing: 10,
+            children: [
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Ok',
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Cancel',
+                  )),
+              ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Done',
+                  )),
+            ],
+          ),));
+  }
+}
+
+
+use of circle avatar widget:
+_____________________________
+
+use: its mainly use for make any picture or avatar in circle way
+
+code: import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'),
+              radius: 100,
+              backgroundColor: Colors.amber,
+              child: Text(
+                'Hello',
+                style: TextStyle(color: Colors.red),
+                
+              ),
+            ),
+          )),
+    );
+  }
+}
+
+
+use of Devider widget:
+______________________
+
+
+use: this widget is use to make a divider between two containers
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Column(
+            children: [
+              Container(
+                color: Colors.blue,
+                height: 200,
+              ),
+              const Divider(
+                indent:
+                    15, //this property is use to move the divider from left to right
+                endIndent:
+                    15, //this property is use to move the divider from right to left
+                thickness: 1,
+                color: Colors.green,
+
+              ),
+              Container(
+                color: Color.fromARGB(255, 0, 235, 47),
+                height: 200,
+              )
+            ],
+          )),
+    );
+  }
+}
+
+
+use of future builder widget:
+_______________________________
+
+
+use: by this widget we can delay any container.this widget is use to get data from api serber
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  String imgUrl = '';
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
+                  height: 400,
+                  width: 250,
+                  color: Colors.black,
+                  child: FutureBuilder(
+                      future: GetData(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          return Center(
+                            child: Image.network(imgUrl),
+                          );
+                        }
+                      })),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: const Text('Reload'))
+            ]),
+          )),
+    );
+  }
+
+  Future<String> GetData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    imgUrl = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg';
+    return imgUrl;
+  }
+}
+
+
+use of Text Field widget:
+_________________________
+
+use: by this widget we can add a text input bar in the application by which we can input text to the application
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  String imgUrl = '';
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+              child: TextField(
+            // decoration: InputDecoration(
+            //   //border: InputBorder.none//to remove the border
+            //   label: Text('First Name'),//for setting textfield name in the top of the textfield
+            // ),
+            //keyboardType: TextInputType.number,//for set up keyboard setting.if number is added than it will appear number when the keyboard arrive
+            autofocus: true,
+            decoration: InputDecoration(
+              filled: true,
+              //focusColor: Colors.grey,
+              //hoverColor: Colors.black,
+              fillColor: Colors.grey,
+              hintText: 'First Name', //add text in the text bar
+              helperText:
+                  'Or UserName', //add a hint text in the bottom of the text field bar
+              border: OutlineInputBorder(), //use to add outline in the text bar
+              // icon: Icon(Icons.person),//for adding icon at the start of the text input bar
+              // prefix: Icon(Icons.person),//for adding icon at the start of the text input bar
+              suffix: Icon(Icons
+                  .person), //for adding icon at the End of the text input bar
+              //suffixText: 'User',//add text at the start of the text bar
+              //prefixText: 'User or Email'//add text at the end of the text bar
+              //hintStyle: TextStyle(color: Colors.amber)
+            ),
+            //showCursor: true,
+            //cursorColor: Colors.green,
+            //cursorHeight: 20,
+            //cursorWidth: 10,
+            //maxLines: null,//number of line created by the text bar
+            // maxLength: 100,//limitation for a text bar.number of word for the bar
+            //obscureText: true,//this is a bar which we use to hide the text.it is usually use to set password
+            toolbarOptions: ToolbarOptions(
+                copy: true,
+                cut: true,
+                selectAll: true,
+                paste: true), //for select copy paste or cut text from the bar
+                
+            //readOnly: true,//for only input text manually not by user
+          ))),
+    );
+  }
+}
+
+
+use of inkwell widget
+_______________________
+
+use: this widget is use to make a object or container clickable or transfer the container into a botton
+
+code:
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  String imgUrl = '';
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: InkWell(
+              onTap: () {},
+              splashColor: Colors.brown,
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Text('Botton'),
+                  )),
+            ),
+          )),
+    );
+  }
+}
+
+
+use of interactive viewer in the widget:
+_________________________________________
+
+use: this widget is use to zoom in zzoom out a image in the app screen
+
+code:
+import 'dart:ffi';
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  String imgUrl = '';
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: ClipRect(
+                child: InteractiveViewer(
+                    //scaleEnabled: false,//for dissable zooming
+                    maxScale: 10, //the max value of zooming
+                    minScale: 1, //the min value of zooming
+                    boundaryMargin: EdgeInsets.all(20),//for adding boundary in the image
+                    constrained: false,//when this is false it will take the whole app screen to show the pictur
+                    
+                    child: Image.network(
+                        'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'))),
+          )),
+    );
+  }
+}
+
+use of gridview widget:
+______________________
+
+
+use :this widget is use to add picture in vertical form or raw form
+
+code:
+
+import 'dart:ffi';
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  String imgUrl = '';
+  int index = 0; //variablr declaration
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'MyApp',
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: Center(
+            child: GridView(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 3,
+                mainAxisSpacing:
+                    2, //mainAxisSpacing is  use to add space between 2 picture in a raw
+                //crossAxisSpacing is use to add space between two column picture in a gridview
+              ), //crossAxisCount property is use to add the number of how many photo we should add in a raw
+              children: [
+                Image.network(
+                    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'),
+                Image.network(
+                    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'),
+                Image.network(
+                    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'),
+                Image.network(
+                    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX'),
+              ],
+            ),
+          )),
+    );
+  }
+}
+
+use of gridview.count widget:
+______________________________
+
+use: this widget is same as gridview
+
+code:
+
+import 'dart:ffi';
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  List item = [
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('AppBar Title'),
+          ),
+          drawer: Drawer(),
+          body: GridView.count(
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            crossAxisCount: 2,
+            padding: EdgeInsets.all(10),
+            children: List.generate(
+                item.length, (index) => Image.network(item[index])),
+          ),
+        ));
+  }
+}
+
+
+girdview builder uses:
+_____________________
+
+code:
+
+import 'dart:ffi';
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(DemoApp());
+}
+
+class DemoApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return DemoAppState();
+  }
+}
+
+class DemoAppState extends State<DemoApp> {
+  List item = [
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+    'https://th.bing.com/th/id/OIG.CO2sHWK_IEYIwzXsC2hX',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'MyApp',
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('AppBar Title'),
+            ),
+            drawer: Drawer(),
+            body: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 5),
+                itemCount: item.length,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    item[index],
+                    fit: BoxFit.fill,
+                  );
+                })));
+  }
+}
+
+
+
+
+
